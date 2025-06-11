@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+
+# Logs
+npm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Local server config
+*.sql
+*.tar
+*.zip
+
+# VSCode settings
+.vscode/
+
+# Environment files
+.env
+.env.*
+
+# Prettier cache
+.prettiercache
+
+# Sass cache
+.sass-cache/
+
+# GitHub Codespaces
+.devcontainer/

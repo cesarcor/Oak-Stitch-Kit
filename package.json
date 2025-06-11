@@ -1,0 +1,30 @@
+{
+  "name": "oak-stitch-kit",
+  "version": "0.0.1",
+  "description": "",
+  "main": "postcss.config.js",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build --mode production",
+    "scaffold-block": "create-block"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wordpress/block-editor": "^14.20.0",
+    "@wordpress/components": "^29.11.0",
+    "@wordpress/data": "^10.25.0",
+    "@wordpress/element": "^6.25.0",
+    "@wordpress/hooks": "^4.25.0",
+    "@wordpress/i18n": "^5.25.0",
+    "@wordpress/server-side-render": "^6.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4",
+    "prettier": "^3.5.3",
+    "sass": "^1.89.2",
+    "vite": "^6.3.5"
+  }
+}
