@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "osk/hero",
+	"name": "oak-stitch-kit/hero",
 	"version": "0.0.1",
-	"title": "Hero",
+	"title": "OSK Hero",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "",

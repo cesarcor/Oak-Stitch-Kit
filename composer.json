@@ -1,0 +1,16 @@
+{
+    "name": "cesarcorrechel/oak-stitch-kit",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "OakStitchKit\\": "inc/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Cesar Correchel",
+            "email": "cesarcorrechel@gmail.com"
+        }
+    ],
+    "require": {}
+}

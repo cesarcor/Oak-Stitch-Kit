@@ -7,21 +7,17 @@
  *
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+defined( 'ABSPATH' ) || exit;
+
+require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+
+define( 'OAK_STITCH_KIT_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
+define( 'OAK_STITCH_KIT_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
+define( 'OAK_STITCH_KIT_VER', '0.0.1' );
+define( 'OAK_STITCH_KIT_BASENAME', plugin_basename( __FILE__ ) );
+
+if ( ! class_exists( OakStitchKit\Oak_Stitch_Kit::class ) ) {
+    error_log( 'Oak_Stitch_Kit class not found!' );
 }
 
-wp_register_script(
-    'osk-blocks',
-    plugins_url( 'dist/js/blocks.js', __FILE__ ),
-    [ 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor', 'wp-data', 'wp-hooks', 'wp-server-side-render' ],
-    filemtime( plugin_dir_path( __FILE__ ) . 'dist/js/blocks.js' ),
-    true
-);
-
-wp_register_style(
-    'osk-editor',
-    plugins_url( 'dist/css/editor.css', __FILE__ ),
-    [],
-    filemtime( plugin_dir_path( __FILE__ ) . 'dist/css/editor.css' )
-);
+add_action('plugins_loaded', [OakStitchKit\Oak_Stitch_Kit::class, 'init'] );

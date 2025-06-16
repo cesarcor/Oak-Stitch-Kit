@@ -4,9 +4,8 @@
   "description": "",
   "main": "postcss.config.js",
   "scripts": {
-    "dev": "vite build --watch --mode development",
-    "build": "vite build --mode production",
-    "scaffold-block": "create-block"
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
   },
   "keywords": [],
   "author": "",
@@ -21,10 +20,10 @@
     "@wordpress/server-side-render": "^6.1.0"
   },
   "devDependencies": {
+    "@wordpress/scripts": "^30.18.0",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.4",
     "prettier": "^3.5.3",
-    "sass": "^1.89.2",
-    "vite": "^6.3.5"
+    "sass": "^1.89.2"
   }
 }
