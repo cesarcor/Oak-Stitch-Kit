@@ -20,6 +20,7 @@
     "@wordpress/server-side-render": "^6.1.0"
   },
   "devDependencies": {
+    "@wordpress/babel-preset-default": "^8.25.0",
     "@wordpress/scripts": "^30.18.0",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.4",
