@@ -3,17 +3,55 @@
 	"apiVersion": 3,
 	"name": "oak-stitch-kit/hero",
 	"version": "0.0.1",
-	"title": "OSK Hero",
+	"title": "OASK Hero",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "",
+	"attributes": {
+		"bgImageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"bgImageId":{
+			"type": "number"
+		},
+		"bgImageAlt": {
+			"type": "string",
+			"default": ""
+		}
+	},
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true,
+			"button": true
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true
+		},
+		"dimensions": {
+			"minHeight": true
+		},
+		"border": {
+			"radius": true
+		}
 	},
+	"allowedBlocks": [
+		"core/heading",
+		"core/paragraph",
+		"core/button"
+	],
 	"textdomain": "hero",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js"
+
 }
