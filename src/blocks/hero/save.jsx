@@ -1,9 +1,17 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { getCornerRadius } from '../../utils/border-radius';
 
 export default function save({ attributes }) {
-	const { bgImageUrl } = attributes;
+	const { bgImageUrl, heightValue, heightUnit, borderRadius } = attributes;
 	const blockProps = useBlockProps.save({
 		className: 'oask-hero',
+		style: {
+			height: `${heightValue}${heightUnit}`,
+			borderTopLeftRadius: getCornerRadius(borderRadius, 'topLeft'),
+			borderTopRightRadius: getCornerRadius(borderRadius, 'topRight'),
+			borderBottomLeftRadius: getCornerRadius(borderRadius, 'bottomLeft'),
+			borderBottomRightRadius: getCornerRadius(borderRadius, 'bottomRight'),
+		},
 	});
 
 	return (

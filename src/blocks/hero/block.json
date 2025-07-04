@@ -10,7 +10,7 @@
 	"attributes": {
 		"bgImageUrl": {
 			"type": "string",
-			"default": ""
+			"default": "/wp-content/plugins/oak-stitch-kit/assets/images/default_hero.webp"
 		},
 		"bgImageId":{
 			"type": "number"
@@ -18,6 +18,24 @@
 		"bgImageAlt": {
 			"type": "string",
 			"default": ""
+		},
+		"heightValue":{
+			"type": "string",
+			"default": "80"
+		},
+		"heightUnit": {
+			"type": "string",
+			"default": "vh"
+		},
+		"borderRadius": {
+			"type": "object",
+			"default": {
+				"global": { "value": 30, "unit": "px" },
+				"topLeft": {},
+				"topRight": {},
+				"bottomLeft": {},
+				"bottomRight": {}
+			}
 		}
 	},
 	"example": {},
@@ -35,9 +53,6 @@
 		"background": {
 			"backgroundImage": true,
 			"backgroundSize": true
-		},
-		"dimensions": {
-			"minHeight": true
 		},
 		"border": {
 			"radius": true

@@ -1,14 +1,19 @@
 .oask-hero {
 	position: relative;
 	overflow: hidden;
-	min-height: 35vh;
 }
 
 .oask-hero__wrapper {
 	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
-.oask-hero__background {
+.oask-hero__background-wrapper,
+.oask-hero__background-img {
 	position: absolute;
 	inset: 0;
 	width: 100%;
@@ -20,11 +25,8 @@
 }
 
 .oask-hero__content {
-	position: absolute;
+	position: relative;
 	z-index: 10;
 	padding: 2rem;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	text-align: center;
 }

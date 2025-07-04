@@ -6,8 +6,12 @@ import {
 	MediaUpload,
 	MediaUploadCheck,
 } from '@wordpress/block-editor';
-import { PanelBody, Button } from '@wordpress/components';
-import './editor.scss';
+import {
+	PanelBody,
+	Button,
+	__experimentalUnitControl as UnitControl,
+} from '@wordpress/components';
+import { getCornerRadius } from '../../utils/border-radius';
 
 const TEMPLATE = [
 	[
@@ -36,7 +40,17 @@ const TEMPLATE = [
 ];
 
 export default function Edit({ attributes, setAttributes }) {
-	const { bgImageUrl, bgImageId, bgImageAlt } = attributes;
+	const DEFAULT_IMAGE =
+		'/wp-content/plugins/oak-stitch-kit/assets/images/default_hero.webp';
+
+	const {
+		bgImageUrl,
+		bgImageId,
+		bgImageAlt,
+		heightValue,
+		heightUnit,
+		borderRadius,
+	} = attributes;
 
 	const onSelectImage = (media) => {
 		setAttributes({
@@ -46,8 +60,17 @@ export default function Edit({ attributes, setAttributes }) {
 		});
 	};
 
+	const imageUrl = bgImageUrl || DEFAULT_IMAGE;
+
 	const blockProps = useBlockProps({
 		className: 'oask-hero',
+		style: {
+			height: `${heightValue}${heightUnit}`,
+			borderTopLeftRadius: getCornerRadius(borderRadius, 'topLeft'),
+			borderTopRightRadius: getCornerRadius(borderRadius, 'topRight'),
+			borderBottomLeftRadius: getCornerRadius(borderRadius, 'bottomLeft'),
+			borderBottomRightRadius: getCornerRadius(borderRadius, 'bottomRight'),
+		},
 	});
 
 	return (
@@ -86,13 +109,145 @@ export default function Edit({ attributes, setAttributes }) {
 					)}
 				</PanelBody>
 			</InspectorControls>
-			<section {...blockProps}>
+
+			<InspectorControls group='styles'>
+				<PanelBody title={__('Height', 'oak-stitch-kit')}>
+					<UnitControl
+						label={__('Height', 'oak-stitch-kit')}
+						value={`${heightValue}${heightUnit}`}
+						units={[
+							{ value: 'vh', label: 'vh', default: 50 },
+							{ value: 'px', label: 'px', default: 400 },
+							{ value: '%', label: '%', default: 80 },
+							{ value: 'em', label: 'em', default: 20 },
+						]}
+						onChange={(newHeight) => {
+							const matches = newHeight.match(/(\d+)(px|vh|em|%)/);
+							if (matches) {
+								const [, value, unit] = matches;
+								setAttributes({
+									heightValue: parseInt(value, 10),
+									heightUnit: unit,
+								});
+							}
+						}}
+					/>
+				</PanelBody>
+				<PanelBody
+					title={__('Border Radius', 'oak-stitch-kit')}
+					initialOpen={false}
+				>
+					<UnitControl
+						label={__('Global Radius', 'oak-stitch-kit')}
+						value={`${borderRadius.global?.value || 0}${borderRadius.global?.unit || 'px'}`}
+						units={[
+							{ value: 'px', label: 'px' },
+							{ value: '%', label: '%' },
+							{ value: 'em', label: 'em' },
+						]}
+						onChange={(newValue) => {
+							const [_, value, unit] = newValue.match(/^(\d+)(px|%|em)$/) || [];
+							if (value && unit) {
+								const global = { value: parseInt(value), unit };
+								setAttributes({ borderRadius: { ...borderRadius, global } });
+							}
+						}}
+					/>
+
+					<UnitControl
+						label={__('Top Left Radius', 'oak-stitch-kit')}
+						value={`${borderRadius.topLeft.value}${borderRadius.topLeft.unit}`}
+						units={[
+							{ value: 'px', label: 'px', default: 0 },
+							{ value: 'em', label: 'em', default: 0 },
+							{ value: '%', label: '%', default: 0 },
+						]}
+						onChange={(newValue) => {
+							const matches = newValue.match(/(\d+)(px|em|%)/);
+							if (matches) {
+								const [, value, unit] = matches;
+								setAttributes({
+									borderRadius: {
+										...borderRadius,
+										topLeft: { value: parseInt(value, 10), unit },
+									},
+								});
+							}
+						}}
+					/>
+					<UnitControl
+						label={__('Top Right Radius', 'oak-stitch-kit')}
+						value={`${borderRadius.topRight.value}${borderRadius.topRight.unit}`}
+						units={[
+							{ value: 'px', label: 'px', default: 0 },
+							{ value: 'em', label: 'em', default: 0 },
+							{ value: '%', label: '%', default: 0 },
+						]}
+						onChange={(newValue) => {
+							const matches = newValue.match(/(\d+)(px|em|%)/);
+							if (matches) {
+								const [, value, unit] = matches;
+								setAttributes({
+									borderRadius: {
+										...borderRadius,
+										topRight: { value: parseInt(value, 10), unit },
+									},
+								});
+							}
+						}}
+					/>
+					<UnitControl
+						label={__('Bottom Left Radius', 'oak-stitch-kit')}
+						value={`${borderRadius.bottomLeft.value}${borderRadius.bottomLeft.unit}`}
+						units={[
+							{ value: 'px', label: 'px', default: 0 },
+							{ value: 'em', label: 'em', default: 0 },
+							{ value: '%', label: '%', default: 0 },
+						]}
+						onChange={(newValue) => {
+							const matches = newValue.match(/(\d+)(px|em|%)/);
+							if (matches) {
+								const [, value, unit] = matches;
+								setAttributes({
+									borderRadius: {
+										...borderRadius,
+										bottomLeft: { value: parseInt(value, 10), unit },
+									},
+								});
+							}
+						}}
+					/>
+					<UnitControl
+						label={__('Bottom Right Radius', 'oak-stitch-kit')}
+						value={`${borderRadius.bottomRight.value}${borderRadius.bottomRight.unit}`}
+						units={[
+							{ value: 'px', label: 'px', default: 0 },
+							{ value: 'em', label: 'em', default: 0 },
+							{ value: '%', label: '%', default: 0 },
+						]}
+						onChange={(newValue) => {
+							const matches = newValue.match(/(\d+)(px|em|%)/);
+							if (matches) {
+								const [, value, unit] = matches;
+								setAttributes({
+									borderRadius: {
+										...borderRadius,
+										bottomRight: { value: parseInt(value, 10), unit },
+									},
+								});
+							}
+						}}
+					/>
+				</PanelBody>
+			</InspectorControls>
+
+			<div {...blockProps}>
 				<div className='oask-hero__wrapper'>
 					{bgImageUrl && (
 						<div className='oask-hero__background-wrapper'>
 							<img
-								src={bgImageUrl}
-								alt={bgImageAlt}
+								src={imageUrl}
+								alt={bgImageAlt ? bgImageAlt : 'Oak & Stitch Hero'}
 								aria-hidden='true'
 								className='oask-hero__background-img'
 							/>
@@ -102,7 +257,7 @@ export default function Edit({ attributes, setAttributes }) {
 						<InnerBlocks template={TEMPLATE} templateLock={false} />
 					</div>
 				</div>
-			</section>
+			</div>
 		</>
 	);
 }
