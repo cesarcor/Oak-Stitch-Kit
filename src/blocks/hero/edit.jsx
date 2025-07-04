@@ -9,6 +9,7 @@ import {
 import {
 	PanelBody,
 	Button,
+	SelectControl,
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 import { getCornerRadius } from '../../utils/border-radius';
@@ -48,6 +49,8 @@ export default function Edit({ attributes, setAttributes }) {
 		bgImageId,
 		bgImageAlt,
 		heightValue,
+		contentHorizontalAlignment,
+		contentVerticalAlignment,
 		heightUnit,
 		borderRadius,
 	} = attributes;
@@ -131,6 +134,32 @@ export default function Edit({ attributes, setAttributes }) {
 								});
 							}
 						}}
+					/>
+				</PanelBody>
+				<PanelBody title={__('Content Alignment', 'oak-stitch-kit')}>
+					<SelectControl
+						label={__('Horizontal Alignment', 'oak-stitch-kit')}
+						value={attributes.contentHorizontalAlignment}
+						options={[
+							{ label: __('left', 'oak-stitch-kit'), value: 'left' },
+							{ label: __('center', 'oak-stitch-kit'), value: 'center' },
+							{ label: __('right', 'oak-stitch-kit'), value: 'right' },
+						]}
+						onChange={(value) =>
+							setAttributes({ contentHorizontalAlignment: value })
+						}
+					/>
+					<SelectControl
+						label={__('Vertical Alignment', 'oak-stitch-kit')}
+						value={attributes.contentVerticalAlignment}
+						options={[
+							{ label: __('top', 'oak-stitch-kit'), value: 'top' },
+							{ label: __('center', 'oak-stitch-kit'), value: 'center' },
+							{ label: __('bottom', 'oak-stitch-kit'), value: 'bottom' },
+						]}
+						onChange={(value) =>
+							setAttributes({ contentVerticalAlignment: value })
+						}
 					/>
 				</PanelBody>
 				<PanelBody
@@ -242,7 +271,9 @@ export default function Edit({ attributes, setAttributes }) {
 			</InspectorControls>
 
 			<div {...blockProps}>
-				<div className='oask-hero__wrapper'>
+				<div
+					className={`oask-hero__wrapper oask-hero__align-h-${attributes.contentHorizontalAlignment} oask-hero__align-v-${attributes.contentVerticalAlignment}`}
+				>
 					{bgImageUrl && (
 						<div className='oask-hero__background-wrapper'>
 							<img

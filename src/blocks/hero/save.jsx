@@ -2,7 +2,14 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { getCornerRadius } from '../../utils/border-radius';
 
 export default function save({ attributes }) {
-	const { bgImageUrl, heightValue, heightUnit, borderRadius } = attributes;
+	const {
+		bgImageUrl,
+		heightValue,
+		heightUnit,
+		contentHorizontalAlignment,
+		contentVerticalAlignment,
+		borderRadius,
+	} = attributes;
 	const blockProps = useBlockProps.save({
 		className: 'oask-hero',
 		style: {
@@ -16,7 +23,9 @@ export default function save({ attributes }) {
 
 	return (
 		<div {...blockProps}>
-			<div className='oask-hero__wrapper'>
+			<div
+				className={`oask-hero__wrapper oask-hero__align-h-${attributes.contentHorizontalAlignment} oask-hero__align-v-${attributes.contentVerticalAlignment}`}
+			>
 				{bgImageUrl && (
 					<div className='oask-hero__background-wrapper'>
 						<img

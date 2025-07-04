@@ -6,10 +6,32 @@
 .oask-hero__wrapper {
 	position: relative;
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	width: 100%;
 	height: 100%;
+}
+
+.oask-hero__align-h-left {
+	justify-content: flex-start;
+}
+
+.oask-hero__align-h-center {
+	justify-content: center;
+}
+
+.oask-hero__align-h-right {
+	justify-content: flex-end;
+}
+
+.oask-hero__align-v-top {
+	align-items: flex-start;
+}
+
+.oask-hero__align-v-center {
+	align-items: center;
+}
+
+.oask-hero__align-v-bottom {
+	align-items: flex-end;
 }
 
 .oask-hero__background-wrapper,

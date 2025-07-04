@@ -8,6 +8,14 @@
 	"icon": "smiley",
 	"description": "",
 	"attributes": {
+		"contentHorizontalAlignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"contentVerticalAlignment": {
+			"type": "string",
+			"default": "center"
+		},
 		"bgImageUrl": {
 			"type": "string",
 			"default": "/wp-content/plugins/oak-stitch-kit/assets/images/default_hero.webp"
@@ -65,7 +73,7 @@
 	],
 	"textdomain": "hero",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
+	"editorStyle": "file:./style-index.css",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js"
 
